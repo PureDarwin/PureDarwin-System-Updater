@@ -49,7 +49,7 @@
  *
  * Darwinup database abstraction. This class is responsible
  *  for generating the Table and Column objects that make
- *  up the darwinup database schema, but the parent handles
+ *  up the pd_pkg database schema, but the parent handles
  *  deallocation. 
  *
  */

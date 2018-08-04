@@ -45,7 +45,7 @@
 "%s\n\n" \
 "You seem to be trying to install a %s over a %s.                             \n" \
 "Darwinup will not install this root by default since it could cause damage   \n" \
-"to your system. You can use the force (-f) option to allow darwinup to       \n" \
+"to your system. You can use the force (-f) option to allow pd_pkg to       \n" \
 "attempt the install anyway.                                                  \n" \
 "-----------------------------------------------------------------------------\n"
 

@@ -61,7 +61,7 @@ struct Depot;
 //  Archive
 //
 //  Archive is the root class of all archive formats
-//  supported by darwinup.
+//  supported by pd_pkg.
 //
 //  Conceptually it's an abstract class, although that
 //  hasn't been formalized.
@@ -163,7 +163,7 @@ struct Archive {
 //  RollbackArchive
 //
 //  Not a file format.  RollbackArchive is an internal representation
-//  of archives that are created to store the user-data that darwinup
+//  of archives that are created to store the user-data that pd_pkg
 //  archives as part of installation.
 ////
 struct RollbackArchive : public Archive {

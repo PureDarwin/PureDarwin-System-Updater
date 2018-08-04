@@ -132,7 +132,7 @@ int Database::connect() {
 	if (!exists && access(dirname(m_path), W_OK | X_OK)) {
 		// does not exist and we cannot write to the directory
 		fprintf(stderr, 
-				"Error: Unable to create new darwinup database. "
+				"Error: Unable to create new pd_pkg database. "
 				"Try running as root.");
 		return DB_ERROR;					
 	}
@@ -170,8 +170,8 @@ int Database::connect() {
 		if (version < this->m_schema_version) {
 			if (readonly) {
 				fprintf(stderr, 
-						"Error: the darwinup database needs to be upgraded "
-						"but darwinup cannot write to database. "
+						"Error: the pd_pkg database needs to be upgraded "
+						"but pd_pkg cannot write to database. "
 						"Try running as root.\n");
 				sqlite3_close(m_db);
 				m_db = NULL;
@@ -945,7 +945,7 @@ void Database::init_cache() {
 	attrs.value_make_purgeable_cb = NULL;
 	attrs.value_make_nonpurgeable_cb = NULL;
 	attrs.user_data = NULL;
-	cache_create("org.macosforge.darwinbuild.darwinup.statements", 
+	cache_create("org.macosforge.darwinbuild.pd_pkg.statements", 
 				 &attrs, &m_statement_cache);
 }
 

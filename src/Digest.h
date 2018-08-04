@@ -43,7 +43,7 @@
 //  Digest
 //
 //  Digest is the abstract root class for all message digest algorithms
-//  supported by darwinup. Subclasses must implement the constructors 
+//  supported by pd_pkg. Subclasses must implement the constructors 
 //  and digest() APIs.
 //
 //  SHA1Digest is the only concrete subclass.  There are two

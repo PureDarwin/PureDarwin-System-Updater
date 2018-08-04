@@ -48,7 +48,7 @@
 		1FFFC0C62116364C009A0609 /* Table.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Table.h; sourceTree = "<group>"; };
 		1FFFC0C72116364C009A0609 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		1FFFC0C82116364C009A0609 /* Column.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Column.cpp; sourceTree = "<group>"; };
-		1FFFC0C92116364C009A0609 /* darwinup.1 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.man; path = darwinup.1; sourceTree = "<group>"; };
+		1FFFC0C92116364C009A0609 /* pd_pkg.1 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.man; path = pd_pkg.1; sourceTree = "<group>"; };
 		1FFFC0CA2116364C009A0609 /* Archive.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Archive.cpp; sourceTree = "<group>"; };
 		1FFFC0CB2116364C009A0609 /* DB.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DB.cpp; sourceTree = "<group>"; };
 		1FFFC0CC2116364C009A0609 /* Database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Database.h; sourceTree = "<group>"; };
@@ -89,7 +89,6 @@
 				1FFFC0BC2116364C009A0609 /* Archive.h */,
 				1FFFC0C82116364C009A0609 /* Column.cpp */,
 				1FFFC0C02116364C009A0609 /* Column.h */,
-				1FFFC0C92116364C009A0609 /* darwinup.1 */,
 				1FFFC0BF2116364C009A0609 /* Database.cpp */,
 				1FFFC0CC2116364C009A0609 /* Database.h */,
 				1FFFC0CB2116364C009A0609 /* DB.cpp */,
@@ -102,6 +101,7 @@
 				1FFFC0BD2116364C009A0609 /* File.h */,
 				1FFFC0D02116364D009A0609 /* main.cpp */,
 				1FFFC0BE2116364C009A0609 /* NOTES */,
+				1FFFC0C92116364C009A0609 /* pd_pkg.1 */,
 				1FFFC0D12116364D009A0609 /* SerialSet.cpp */,
 				1FFFC0C12116364C009A0609 /* SerialSet.h */,
 				1FFFC0CE2116364C009A0609 /* Table.cpp */,

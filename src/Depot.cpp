@@ -436,7 +436,7 @@ int Depot::analyze_stage(const char* path, Archive* archive, Archive* rollback,
 
 			if (strcasestr(file->path(), ".DarwinDepot")) {
 				fprintf(stderr, "Error: Root contains a .DarwinDepot, "
-						"aborting to avoid damaging darwinup metadata.\n");
+						"aborting to avoid damaging pd_pkg metadata.\n");
 				return DEPOT_ERROR;
 			}
 

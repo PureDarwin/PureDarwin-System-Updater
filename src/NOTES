@@ -1,4 +1,4 @@
-darwinup
+pd_pkg
 12-Mar-2010
 Kevin Van Vechten <kvv@apple.com>
 William Siegrist  <wsiegrist@apple.com>
@@ -42,12 +42,12 @@ If an archive has any data to be installed, it will have a corresponding entry
 in this directory.  This is known as the backing-store of the archive.
 The backing-store is either in a compressed (.tar.bz2) or expanded (directory)
 state.  The compressed state is always authoritative and the expanded state
-is pruned when darwinup exits.  The backing store for each archive is named
+is pruned when pd_pkg exits.  The backing store for each archive is named
 according to that archive's UUID in the database.
 
 /.DarwinDepot/Downloads/
 Temporary storage for any remote archives, such as when giving http or
-rsync urls to darwinup. 
+rsync urls to pd_pkg. 
 
 OPERATIONS
 ==========
