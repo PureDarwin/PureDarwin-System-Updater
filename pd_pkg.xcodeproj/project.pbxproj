@@ -19,16 +19,19 @@
 		1FFFC0DC2116364D009A0609 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1FFFC0D02116364D009A0609 /* main.cpp */; };
 		1FFFC0DD2116364D009A0609 /* SerialSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1FFFC0D12116364D009A0609 /* SerialSet.cpp */; };
 		1FFFC0E021163674009A0609 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FFFC0DF21163674009A0609 /* libsqlite3.tbd */; };
+		1FFFC0E2211637E7009A0609 /* pd_pkg.1 in Install manpage */ = {isa = PBXBuildFile; fileRef = 1FFFC0C92116364C009A0609 /* pd_pkg.1 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		1FFFC0B221163638009A0609 /* CopyFiles */ = {
+		1FFFC0B221163638009A0609 /* Install manpage */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
+			dstPath = /usr/local/share/man/man1;
 			dstSubfolderSpec = 0;
 			files = (
+				1FFFC0E2211637E7009A0609 /* pd_pkg.1 in Install manpage */,
 			);
+			name = "Install manpage";
 			runOnlyForDeploymentPostprocessing = 1;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -137,7 +140,7 @@
 			buildPhases = (
 				1FFFC0B021163638009A0609 /* Sources */,
 				1FFFC0B121163638009A0609 /* Frameworks */,
-				1FFFC0B221163638009A0609 /* CopyFiles */,
+				1FFFC0B221163638009A0609 /* Install manpage */,
 			);
 			buildRules = (
 			);
