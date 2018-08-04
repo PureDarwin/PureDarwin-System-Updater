@@ -19,7 +19,7 @@
 		1FFFC0DC2116364D009A0609 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1FFFC0D02116364D009A0609 /* main.cpp */; };
 		1FFFC0DD2116364D009A0609 /* SerialSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1FFFC0D12116364D009A0609 /* SerialSet.cpp */; };
 		1FFFC0E021163674009A0609 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FFFC0DF21163674009A0609 /* libsqlite3.tbd */; };
-		1FFFC0E2211637E7009A0609 /* pd_pkg.8 in Install manpage */ = {isa = PBXBuildFile; fileRef = 1FFFC0C92116364C009A0609 /* pd_pkg.8 */; };
+		1FFFC0E2211637E7009A0609 /* pd_update.8 in Install manpage */ = {isa = PBXBuildFile; fileRef = 1FFFC0C92116364C009A0609 /* pd_update.8 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,7 +29,7 @@
 			dstPath = /usr/local/share/man/man8;
 			dstSubfolderSpec = 0;
 			files = (
-				1FFFC0E2211637E7009A0609 /* pd_pkg.8 in Install manpage */,
+				1FFFC0E2211637E7009A0609 /* pd_update.8 in Install manpage */,
 			);
 			name = "Install manpage";
 			runOnlyForDeploymentPostprocessing = 1;
@@ -51,7 +51,7 @@
 		1FFFC0C62116364C009A0609 /* Table.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Table.h; sourceTree = "<group>"; };
 		1FFFC0C72116364C009A0609 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		1FFFC0C82116364C009A0609 /* Column.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Column.cpp; sourceTree = "<group>"; };
-		1FFFC0C92116364C009A0609 /* pd_pkg.8 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pd_pkg.8; sourceTree = "<group>"; };
+		1FFFC0C92116364C009A0609 /* pd_update.8 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pd_update.8; sourceTree = "<group>"; };
 		1FFFC0CA2116364C009A0609 /* Archive.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Archive.cpp; sourceTree = "<group>"; };
 		1FFFC0CB2116364C009A0609 /* DB.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DB.cpp; sourceTree = "<group>"; };
 		1FFFC0CC2116364C009A0609 /* Database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Database.h; sourceTree = "<group>"; };
@@ -104,7 +104,7 @@
 				1FFFC0BD2116364C009A0609 /* File.h */,
 				1FFFC0D02116364D009A0609 /* main.cpp */,
 				1FFFC0BE2116364C009A0609 /* NOTES */,
-				1FFFC0C92116364C009A0609 /* pd_pkg.8 */,
+				1FFFC0C92116364C009A0609 /* pd_update.8 */,
 				1FFFC0D12116364D009A0609 /* SerialSet.cpp */,
 				1FFFC0C12116364C009A0609 /* SerialSet.h */,
 				1FFFC0CE2116364C009A0609 /* Table.cpp */,
