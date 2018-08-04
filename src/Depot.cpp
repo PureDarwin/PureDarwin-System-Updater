@@ -75,7 +75,7 @@ Depot::Depot(const char* prefix) {
 	m_modified_xpc_services = false;
 	
 	asprintf(&m_prefix, "%s", prefix);
-	join_path(&m_depot_path, m_prefix, "/.DarwinDepot");
+	join_path(&m_depot_path, m_prefix, "/private/var/db/DarwinDepot");
 	join_path(&m_database_path, m_depot_path, "/Database-V100");
 	join_path(&m_archives_path, m_depot_path, "/Archives");
 	join_path(&m_downloads_path, m_depot_path, "/Downloads");

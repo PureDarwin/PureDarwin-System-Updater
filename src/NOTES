@@ -27,17 +27,17 @@ THE DEPOT
 =========
 
 The Darwin Update utility creates a directory at the root level of the
-filesystem (/.DarwinDepot) where it stores its database of currently
+filesystem (/private/var/db/DarwinDepot) where it stores its database of currently
 installed components, and archived copies of the components they superseded.
 This is known as the depot.
 
 The following files are present in the depot:
 
-/.DarwinDepot/Database-V100
+/private/var/db/DarwinDepot/Database-V100
 SQLite database containing information about all of the archives and files
 that have been installed with darwinbuild.
 
-/.DarwinDepot/Archives/
+/private/var/db/DarwinDepot/Archives/
 If an archive has any data to be installed, it will have a corresponding entry
 in this directory.  This is known as the backing-store of the archive.
 The backing-store is either in a compressed (.tar.bz2) or expanded (directory)
@@ -45,7 +45,7 @@ state.  The compressed state is always authoritative and the expanded state
 is pruned when pd_pkg exits.  The backing store for each archive is named
 according to that archive's UUID in the database.
 
-/.DarwinDepot/Downloads/
+/private/var/db/DarwinDepot/Downloads/
 Temporary storage for any remote archives, such as when giving http or
 rsync urls to pd_pkg. 
 
