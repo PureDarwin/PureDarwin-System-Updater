@@ -25,10 +25,10 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 @APPLE_BSD_LICENSE_HEADER_END@
 ..
 .Dd 16 Apr, 2010
-.Dt pd_pkg 1
+.Dt pd_update 1
 .Os Darwin
 .Sh NAME
-.Nm pd_pkg
+.Nm /usr/libexec/pd_update
 .Nd Install, uninstall, and manage roots
 .Sh SYNOPSIS
 .Nm
@@ -50,7 +50,7 @@ Do not run helpful automation. See HELPFUL AUTOMATION below.
 .It \-f
 Force. Some operations will fail gracefully due to potentially unsafe 
 situations, such as a root that installs a file where a directory is.
-In order to have pd_pkg continue through such a situation, you can
+In order to have pd_update continue through such a situation, you can
 pass the -f option.
 .It \-n
 Dry run. Darwinup will go through an operation, including analyzing
@@ -58,16 +58,16 @@ the root(s) and printing the state/change symbol, but no files will
 be modified on your system and no records will be added to the depot.
 This option implies -d.
 .It \-p Op Ar path
-Prefix path. Normally, pd_pkg will operate on the boot partition. You
-can use the -p option to have pd_pkg work on another partition. You
+Prefix path. Normally, pd_update will operate on the boot partition. You
+can use the -p option to have pd_update work on another partition. You
 can provide any arbitrary path, it does not need to be a mount point.
 .It \-r
 Restart. Gracefully restart after all operations are complete by telling
 Finder to restart. 
 .It \-v
-Verbose. This option causes pd_pkg to print extra information. You can
+Verbose. This option causes pd_update to print extra information. You can
 pass 2 or 3 v's for even more information, but that is usually only needed
-for development and debugging of pd_pkg itself.
+for development and debugging of pd_update itself.
 .El
 .Sh SUBCOMMANDS
 Note that the
@@ -106,12 +106,12 @@ detailing how the archive differs from whats on disk
 Unknown state. Probably a bug.
 .It !
 Missing file during uninstall. Darwinup expected a file or directory to 
-exist, but it did not. This could be a bug in pd_pkg, but most likely 
-another tool or software update removed a file that pd_pkg had been 
+exist, but it did not. This could be a bug in pd_update, but most likely 
+another tool or software update removed a file that pd_update had been 
 tracking. It can also be caused by an installation failing due to an
 object changing type (see FORCING OPERATIONS below), and the subsequent 
 rollback finding the root only partially installed. Since these all 
-happen during uninstall, they are typically safe to ignore, since pd_pkg 
+happen during uninstall, they are typically safe to ignore, since pd_update 
 was going to delete the object anyway.
 .It A
 Added. No previous file or directory existed so the file or directory was
@@ -120,7 +120,7 @@ added to your system.
 External change. The file you are installing is different than the 
 last file you installed, but it is identical to what was actually found
 on disk. This probably means something manually installed a root or software
-update without pd_pkg knowing about it. This is usually harmless. 
+update without pd_update knowing about it. This is usually harmless. 
 .It M 
 Mode change. Only changes to permission or ownership were needed to
 uninstall the file or directory. 
@@ -146,7 +146,7 @@ like any other root.
 .It http[s]://host/path/to/file
 You can install files from an archive hosted on an HTTP/HTTPS server. The
 archive file will be downloaded using curl to your machine and then
-installed like any other archive file. You can not point pd_pkg at a
+installed like any other archive file. You can not point pd_update at a
 directory hosted via HTTP or HTTPS, only archive files such as tarballs.  
 .El
 .Sh ARCHIVE SPECIFICATIONS
@@ -183,31 +183,31 @@ superseded means there is a newer file on disk.
 The all keyword will match all archives. If you specify extra verbosity 
 with -vv, then rollback archives will also be matched by the all keyword. This
 means that 
-.Nm pd_pkg -vv uninstall all
+.Nm pd_update -vv uninstall all
 will attempt to uninstall rollback archives, which will print a message
 about not being able to uninstall rollback archives. This is normal and
 not a problem. 
 .El
 .Sh FORCING OPERATIONS
-There are 2 cases where pd_pkg will require you to pass the force (-f)
+There are 2 cases where pd_update will require you to pass the force (-f)
 option before proceeding with an operation.
 .Bl -tag -width -indent
 .It Object Type Change
 If you install an archive which contains a file with the same path as a 
-directory on your system, or vice versa, pd_pkg will give you a error
+directory on your system, or vice versa, pd_update will give you a error
 about not doing that unless you really want to force it. If you do force
-the operation, pd_pkg will delete the existing object and replace it with
+the operation, pd_update will delete the existing object and replace it with
 the object from the root. This can happen when a directory full of files
 gets packaged up in some opaque file, like xibs/nibs. If you expect this
 "type change", then it is probably safe to force the operation. 
 .It Uninstall a root from an older base system
 Darwinup remembers the version (build) of the operating system when a root
-is installed. The reason for this is pd_pkg saves the old (replaced)
+is installed. The reason for this is pd_update saves the old (replaced)
 files during the installation procedure. Those backups may have come from
 the older operating system, and thus are not necessarily compatible with
 the current build of the operating system. So if you try to uninstall an
 archive that had been installed on a different version of the operating
-system, pd_pkg will stop and provide a message asking you to force the
+system, pd_update will stop and provide a message asking you to force the
 operation if you really want to. If the files you are uninstalling are all
 superseded, then you should not get this error as the backup copies will
 not be used anyway. 
@@ -219,28 +219,28 @@ would otherwise have to remember to run yourself. The "dry run" (-n) and
 happening.
 .Bl -tag -width -indent
 .It Dyld Cache
-If a root modifies any file, then pd_pkg will run 
+If a root modifies any file, then pd_update will run 
 update_dyld_shared_cache unless the -d option is specified.
 .It Kernel Extensions
-If a root modifies a file under /System/Library/Extensions, then pd_pkg
+If a root modifies a file under /System/Library/Extensions, then pd_update
 will update the mtime of /System/Library/Extensions to ensure that the 
 kext cache is updated during the next boot. 
 .El
 .Sh EXAMPLES
 .Bl -tag -width -indent
 .It Install files from a tarball
-$ pd_pkg install library-1.2.3.tar.gz
+$ pd_update install library-1.2.3.tar.gz
 .It Install several directories from /tmp/
-$ pd_pkg install /tmp/*/*~dst/
+$ pd_update install /tmp/*/*~dst/
 .It Uninstall everything
-$ pd_pkg uninstall all
+$ pd_update uninstall all
 .It See what archives have been superseded and then uninstall them
-$ pd_pkg list superseded
-$ pd_pkg uninstall superseded
+$ pd_update list superseded
+$ pd_update uninstall superseded
 .It Uninstall several archives by serial, the oldest one, and one named myroot
-$ pd_pkg uninstall 9 16 myroot oldest
+$ pd_update uninstall 9 16 myroot oldest
 .It Install a root from src.macosforge.org
-$ pd_pkg install http://src.macosforge.org/Roots/10D573/zlib.root.tar.gz
+$ pd_update install http://src.macosforge.org/Roots/10D573/zlib.root.tar.gz
 .El
 .Sh SEE ALSO
 .Xr rsync 1 ,
