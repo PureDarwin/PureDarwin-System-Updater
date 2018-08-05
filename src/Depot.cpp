@@ -119,8 +119,14 @@ int Depot::create_storage() {
 		gid = gs->gr_gid;
 	}
 
-	char *next; int res = 0;
-	while ((next = strchr(m_depot_path, '/')) != NULL) {
+	char *next = m_depot_path; int res = 0;
+	while ((next = strchr(next, '/')) != NULL) {
+		// Ignore the leading slash, if any.
+		if (next == m_depot_path) {
+			next++;
+			continue;
+		}
+
 		*next = 0;
 		res = mkdir(m_depot_path, m_depot_mode);
 		if (res != 0 && errno != EEXIST) {
@@ -130,6 +136,12 @@ int Depot::create_storage() {
 		}
 
 		*next++ = '/';
+	}
+
+	res = mkdir(m_depot_path, m_depot_mode);
+	if (res != 0 && errno != EEXIST) {
+		perror(m_depot_path);
+		return res;
 	}
 
 	res = chmod(m_depot_path, m_depot_mode);
