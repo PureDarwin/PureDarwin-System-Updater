@@ -118,11 +118,18 @@ int Depot::create_storage() {
 	if (gs) {
 		gid = gs->gr_gid;
 	}
-	
-	int res = mkdir(m_depot_path, m_depot_mode);
-	if (res && errno != EEXIST) {
-		perror(m_depot_path);
-		return res;
+
+	char *next; int res = 0;
+	while ((next = strchr(m_depot_path, '/')) != NULL) {
+		*next = 0;
+		res = mkdir(m_depot_path, m_depot_mode);
+		if (res != 0 && errno != EEXIST) {
+			perror(m_depot_path);
+			*next = '/';
+			return res;
+		}
+
+		*next++ = '/';
 	}
 
 	res = chmod(m_depot_path, m_depot_mode);
