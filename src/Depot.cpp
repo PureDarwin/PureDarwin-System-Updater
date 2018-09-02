@@ -135,6 +135,13 @@ int Depot::create_storage() {
 			return res;
 		}
 
+		res = chmod(m_depot_path, m_depot_mode);
+		res = chown(m_depot_path, uid, gid);
+		if (res && errno != EEXIST) {
+			perror(m_depot_path);
+			return res;
+		}
+
 		*next++ = '/';
 	}
 
