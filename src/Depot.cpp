@@ -123,7 +123,7 @@ int Depot::create_storage() {
 	// <prefix>/System so that we don't pick up the host machine's OS build.
 	// Doing so will cause problems if the host machine is updated, probably
 	// requiring that the depot then be blown away and recreated. Not good.
-	if (strcmp(m_prefix, "/") == 0) {
+	if (m_prefix != NULL && strcmp(m_prefix, "/") == 0) {
 		char *system_path = NULL;
 		join_path(&system_path, m_prefix, "/System");
 		mkdir(system_path, m_depot_mode);
