@@ -114,6 +114,7 @@ int Depot::connect() {
 int Depot::create_storage() {
 	uid_t uid = getuid();
 	gid_t gid = 0;
+	int res = 0;
 	struct group *gs = getgrnam("admin");
 	if (gs) {
 		gid = gs->gr_gid;
@@ -126,11 +127,18 @@ int Depot::create_storage() {
 	if (m_prefix != NULL && strcmp(m_prefix, "/") == 0) {
 		char *system_path = NULL;
 		join_path(&system_path, m_prefix, "/System");
-		mkdir(system_path, m_depot_mode);
+		res = mkdir(system_path, m_depot_mode);
+
+		if (res != 0 && errno != EEXIST) {
+			perror(system_path);
+			free(system_path);
+			return res;
+		}
+
 		free(system_path);
 	}
 
-	char *next = m_depot_path; int res = 0;
+	char *next = m_depot_path;
 	while ((next = strchr(next, '/')) != NULL) {
 		// Ignore the leading slash, if any.
 		if (next == m_depot_path) {
