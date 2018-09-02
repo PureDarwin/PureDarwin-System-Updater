@@ -119,6 +119,17 @@ int Depot::create_storage() {
 		gid = gs->gr_gid;
 	}
 
+	// If the depot is being created on an external volume, first create
+	// <prefix>/System so that we don't pick up the host machine's OS build.
+	// Doing so will cause problems if the host machine is updated, probably
+	// requiring that the depot then be blown away and recreated. Not good.
+	if (strcmp(m_prefix, "/") == 0) {
+		char *system_path = NULL;
+		join_path(&system_path, m_prefix, "/System");
+		mkdir(system_path, m_depot_mode);
+		free(system_path);
+	}
+
 	char *next = m_depot_path; int res = 0;
 	while ((next = strchr(next, '/')) != NULL) {
 		// Ignore the leading slash, if any.
