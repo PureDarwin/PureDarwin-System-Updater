@@ -28,7 +28,7 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 .Dt pd_update 1
 .Os Darwin
 .Sh NAME
-.Nm /usr/libexec/pd_update
+.Nm pd_update
 .Nd Install, uninstall, and manage roots
 .Sh SYNOPSIS
 .Nm
@@ -241,6 +241,13 @@ $ pd_update uninstall superseded
 $ pd_update uninstall 9 16 myroot oldest
 .It Install a root from src.macosforge.org
 $ pd_update install http://src.macosforge.org/Roots/10D573/zlib.root.tar.gz
+.El
+.Sh FILES
+.Bl -tag -width -indent
+.It Pa /usr/libexec/pd_update
+The
+.Nm
+program.
 .El
 .Sh SEE ALSO
 .Xr rsync 1 ,
