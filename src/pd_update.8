@@ -45,26 +45,26 @@ allowing you to uninstall the files and revert back to the originals
 safely and easily.
 .Sh OPTIONS
 .Bl -tag -width -indent
-.It \-d
+.It Fl d
 Do not run helpful automation. See HELPFUL AUTOMATION below.
-.It \-f
+.It Fl f
 Force. Some operations will fail gracefully due to potentially unsafe 
 situations, such as a root that installs a file where a directory is.
 In order to have pd_update continue through such a situation, you can
 pass the -f option.
-.It \-n
+.It Fl n
 Dry run. Darwinup will go through an operation, including analyzing
 the root(s) and printing the state/change symbol, but no files will
 be modified on your system and no records will be added to the depot.
 This option implies -d.
-.It \-p Op Ar path
+.It Fl p Op Ar path
 Prefix path. Normally, pd_update will operate on the boot partition. You
 can use the -p option to have pd_update work on another partition. You
 can provide any arbitrary path, it does not need to be a mount point.
-.It \-r
+.It Fl r
 Restart. Gracefully restart after all operations are complete by telling
 Finder to restart. 
-.It \-v
+.It Fl v
 Verbose. This option causes pd_update to print extra information. You can
 pass 2 or 3 v's for even more information, but that is usually only needed
 for development and debugging of pd_update itself.
