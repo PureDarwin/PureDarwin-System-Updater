@@ -53,7 +53,9 @@ situations, such as a root that installs a file where a directory is.
 In order to have pd_update continue through such a situation, you can
 pass the -f option.
 .It Fl n
-Dry run. Darwinup will go through an operation, including analyzing
+Dry run.
+.Nm
+will go through an operation, including analyzing
 the root(s) and printing the state/change symbol, but no files will
 be modified on your system and no records will be added to the depot.
 This option implies -d.
@@ -105,7 +107,9 @@ detailing how the archive differs from whats on disk
 .It ? 
 Unknown state. Probably a bug.
 .It !
-Missing file during uninstall. Darwinup expected a file or directory to 
+Missing file during uninstall.
+.Nm
+expected a file or directory to
 exist, but it did not. This could be a bug in pd_update, but most likely 
 another tool or software update removed a file that pd_update had been 
 tracking. It can also be caused by an installation failing due to an
@@ -201,7 +205,8 @@ the object from the root. This can happen when a directory full of files
 gets packaged up in some opaque file, like xibs/nibs. If you expect this
 "type change", then it is probably safe to force the operation. 
 .It Uninstall a root from an older base system
-Darwinup remembers the version (build) of the operating system when a root
+.Nm
+remembers the version (build) of the operating system when a root
 is installed. The reason for this is pd_update saves the old (replaced)
 files during the installation procedure. Those backups may have come from
 the older operating system, and thus are not necessarily compatible with
@@ -213,7 +218,8 @@ superseded, then you should not get this error as the backup copies will
 not be used anyway. 
 .El
 .Sh HELPFUL AUTOMATION
-Darwinup tries to detect common situations and run external tools that you
+.Nm
+tries to detect common situations and run external tools that you
 would otherwise have to remember to run yourself. The "dry run" (-n) and 
 "disable automation" (-d) options prevent any of the following from 
 happening.
