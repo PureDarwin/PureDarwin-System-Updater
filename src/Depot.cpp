@@ -114,12 +114,31 @@ int Depot::connect() {
 int Depot::create_storage() {
 	uid_t uid = getuid();
 	gid_t gid = 0;
+	int res = 0;
 	struct group *gs = getgrnam("admin");
 	if (gs) {
 		gid = gs->gr_gid;
 	}
 
-	char *next = m_depot_path; int res = 0;
+	// If the depot is being created on an external volume, first create
+	// <prefix>/System so that we don't pick up the host machine's OS build.
+	// Doing so will cause problems if the host machine is updated, probably
+	// requiring that the depot then be blown away and recreated. Not good.
+	if (m_prefix != NULL && strcmp(m_prefix, "/") == 0) {
+		char *system_path = NULL;
+		join_path(&system_path, m_prefix, "/System");
+		res = mkdir(system_path, m_depot_mode);
+
+		if (res != 0 && errno != EEXIST) {
+			perror(system_path);
+			free(system_path);
+			return res;
+		}
+
+		free(system_path);
+	}
+
+	char *next = m_depot_path;
 	while ((next = strchr(next, '/')) != NULL) {
 		// Ignore the leading slash, if any.
 		if (next == m_depot_path) {
@@ -132,6 +151,13 @@ int Depot::create_storage() {
 		if (res != 0 && errno != EEXIST) {
 			perror(m_depot_path);
 			*next = '/';
+			return res;
+		}
+
+		res = chmod(m_depot_path, m_depot_mode);
+		res = chown(m_depot_path, uid, gid);
+		if (res && errno != EEXIST) {
+			perror(m_depot_path);
 			return res;
 		}
 

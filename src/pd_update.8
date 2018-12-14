@@ -25,10 +25,10 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 @APPLE_BSD_LICENSE_HEADER_END@
 ..
 .Dd 16 Apr, 2010
-.Dt pd_update 1
-.Os Darwin
+.Dt pd_update 8
+.Os PureDarwin
 .Sh NAME
-.Nm /usr/libexec/pd_update
+.Nm pd_update
 .Nd Install, uninstall, and manage roots
 .Sh SYNOPSIS
 .Nm
@@ -45,26 +45,28 @@ allowing you to uninstall the files and revert back to the originals
 safely and easily.
 .Sh OPTIONS
 .Bl -tag -width -indent
-.It \-d
+.It Fl d
 Do not run helpful automation. See HELPFUL AUTOMATION below.
-.It \-f
+.It Fl f
 Force. Some operations will fail gracefully due to potentially unsafe 
 situations, such as a root that installs a file where a directory is.
 In order to have pd_update continue through such a situation, you can
 pass the -f option.
-.It \-n
-Dry run. Darwinup will go through an operation, including analyzing
+.It Fl n
+Dry run.
+.Nm
+will go through an operation, including analyzing
 the root(s) and printing the state/change symbol, but no files will
 be modified on your system and no records will be added to the depot.
 This option implies -d.
-.It \-p Op Ar path
+.It Fl p Op Ar path
 Prefix path. Normally, pd_update will operate on the boot partition. You
 can use the -p option to have pd_update work on another partition. You
 can provide any arbitrary path, it does not need to be a mount point.
-.It \-r
+.It Fl r
 Restart. Gracefully restart after all operations are complete by telling
 Finder to restart. 
-.It \-v
+.It Fl v
 Verbose. This option causes pd_update to print extra information. You can
 pass 2 or 3 v's for even more information, but that is usually only needed
 for development and debugging of pd_update itself.
@@ -105,7 +107,9 @@ detailing how the archive differs from whats on disk
 .It ? 
 Unknown state. Probably a bug.
 .It !
-Missing file during uninstall. Darwinup expected a file or directory to 
+Missing file during uninstall.
+.Nm
+expected a file or directory to
 exist, but it did not. This could be a bug in pd_update, but most likely 
 another tool or software update removed a file that pd_update had been 
 tracking. It can also be caused by an installation failing due to an
@@ -201,7 +205,8 @@ the object from the root. This can happen when a directory full of files
 gets packaged up in some opaque file, like xibs/nibs. If you expect this
 "type change", then it is probably safe to force the operation. 
 .It Uninstall a root from an older base system
-Darwinup remembers the version (build) of the operating system when a root
+.Nm
+remembers the version (build) of the operating system when a root
 is installed. The reason for this is pd_update saves the old (replaced)
 files during the installation procedure. Those backups may have come from
 the older operating system, and thus are not necessarily compatible with
@@ -213,7 +218,8 @@ superseded, then you should not get this error as the backup copies will
 not be used anyway. 
 .El
 .Sh HELPFUL AUTOMATION
-Darwinup tries to detect common situations and run external tools that you
+.Nm
+tries to detect common situations and run external tools that you
 would otherwise have to remember to run yourself. The "dry run" (-n) and 
 "disable automation" (-d) options prevent any of the following from 
 happening.
@@ -241,6 +247,13 @@ $ pd_update uninstall superseded
 $ pd_update uninstall 9 16 myroot oldest
 .It Install a root from src.macosforge.org
 $ pd_update install http://src.macosforge.org/Roots/10D573/zlib.root.tar.gz
+.El
+.Sh FILES
+.Bl -tag -width -indent
+.It Pa /usr/libexec/pd_update
+The
+.Nm
+program.
 .El
 .Sh SEE ALSO
 .Xr rsync 1 ,
