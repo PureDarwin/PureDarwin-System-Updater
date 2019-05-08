@@ -26,7 +26,7 @@
 		1FFFC0B221163638009A0609 /* Install manpage */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = /usr/local/share/man/man8;
+			dstPath = /usr/share/man/man8;
 			dstSubfolderSpec = 0;
 			files = (
 				1FFFC0E2211637E7009A0609 /* pd_update.8 in Install manpage */,
