@@ -233,21 +233,24 @@ will update the mtime of /System/Library/Extensions to ensure that the
 kext cache is updated during the next boot. 
 .El
 .Sh EXAMPLES
-.Bl -tag -width -indent
-.It Install files from a tarball
-$ pd_update install library-1.2.3.tar.gz
-.It Install several directories from /tmp/
-$ pd_update install /tmp/*/*~dst/
-.It Uninstall everything
-$ pd_update uninstall all
-.It See what archives have been superseded and then uninstall them
-$ pd_update list superseded
-$ pd_update uninstall superseded
-.It Uninstall several archives by serial, the oldest one, and one named myroot
-$ pd_update uninstall 9 16 myroot oldest
-.It Install a root from src.macosforge.org
-$ pd_update install http://src.macosforge.org/Roots/10D573/zlib.root.tar.gz
-.El
+Install files from a tarball
+.Dl $ Ic pd_update install library-1.2.3.tar.gz
+.Pp
+Install several directories from /tmp/
+.Dl $ Ic pd_update install /tmp/*/*~dst/
+.Pp
+Uninstall everything
+.Dl $ Ic pd_update uninstall all
+.Pp
+See what archives have been superseded and then uninstall them
+.Dl $ Ic pd_update list superseded
+.Dl $ Ic pd_update uninstall superseded
+.Pp
+Uninstall several archives by serial, the oldest one, and one named myroot
+.Dl $ Ic pd_update uninstall 9 16 myroot oldest
+.Pp
+Install a root from src.macosforge.org
+.Dl $ Ic pd_update install http://src.macosforge.org/Roots/10D573/zlib.root.tar.gz
 .Sh FILES
 .Bl -tag -width -indent
 .It Pa /usr/libexec/pd_update
