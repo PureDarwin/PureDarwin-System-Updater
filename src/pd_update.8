@@ -35,21 +35,21 @@
 .Nm
 .Op Fl dfnv
 .Op Fl p Ar path
-.Ar subcommand 
+.Ar subcommand
 .Op Ar arguments ...
 .Sh DESCRIPTION
-.Nm 
+.Nm
 allows you to manage roots, or
 archives, of files that replace parts of your system. This is useful
-for installing a new version of a library or tool on your system while 
-allowing you to uninstall the files and revert back to the originals 
+for installing a new version of a library or tool on your system while
+allowing you to uninstall the files and revert back to the originals
 safely and easily.
 .Sh OPTIONS
 .Bl -tag -width -indent
 .It Fl d
 Do not run helpful automation. See HELPFUL AUTOMATION below.
 .It Fl f
-Force. Some operations will fail gracefully due to potentially unsafe 
+Force. Some operations will fail gracefully due to potentially unsafe
 situations, such as a root that installs a file where a directory is.
 In order to have pd_update continue through such a situation, you can
 pass the -f option.
@@ -66,7 +66,7 @@ can use the -p option to have pd_update work on another partition. You
 can provide any arbitrary path, it does not need to be a mount point.
 .It Fl r
 Restart. Gracefully restart after all operations are complete by telling
-Finder to restart. 
+Finder to restart.
 .It Fl v
 Verbose. This option causes pd_update to print extra information. You can
 pass 2 or 3 v's for even more information, but that is usually only needed
@@ -77,89 +77,97 @@ Note that the
 .Ar path
 and
 .Ar archive
-options listed below support globbing and multiple items. See the EXAMPLES 
+options listed below support globbing and multiple items. See the EXAMPLES
 section below for more details.
 .Bl -tag -width -indent
 .It files Ar archives
-List the files and directories in the 
+List the files and directories in the
 .Ar archive .
 .It install Ar path
-Install the root at 
+Install the root at
 .Ar path .
 .It list Op Ar archive
 List archives that are installed. You may optionally provide an
-archive specification to limit which archives get listed. 
+archive specification to limit which archives get listed.
 .It rename Ar archive Ar name
 Rename an archive.
 .It uninstall Ar archives
 Uninstall the specified archive.
 .It upgrade Ar path
-Find the last archive that was installed with the same name (basename of 
-path), and replace it with the root at 
+Find the last archive that was installed with the same name (basename of
+path), and replace it with the root at
 .Ar path .
 .It verify Ar archive
-List all of the information about 
+List all of the information about
 .Ar archive .
 This includes status letters
 detailing how the archive differs from whats on disk
 .El
 .Sh STATE/CHANGE SYMBOLS
 .Bl -tag -width -indent
-.It ? 
+.It ?
 Unknown state. Probably a bug.
 .It !
 Missing file during uninstall.
 .Nm
 expected a file or directory to
-exist, but it did not. This could be a bug in pd_update, but most likely 
-another tool or software update removed a file that pd_update had been 
+exist, but it did not. This could be a bug in
+.Nm ,
+but most likely
+another tool or software update removed a file that
+.Nm
+had been
 tracking. It can also be caused by an installation failing due to an
-object changing type (see FORCING OPERATIONS below), and the subsequent 
-rollback finding the root only partially installed. Since these all 
-happen during uninstall, they are typically safe to ignore, since pd_update 
+object changing type (see FORCING OPERATIONS below), and the subsequent
+rollback finding the root only partially installed. Since these all
+happen during uninstall, they are typically safe to ignore, since
+.Nm
 was going to delete the object anyway.
 .It A
 Added. No previous file or directory existed so the file or directory was
 added to your system.
 .It E
-External change. The file you are installing is different than the 
+External change. The file you are installing is different than the
 last file you installed, but it is identical to what was actually found
 on disk. This probably means something manually installed a root or software
-update without pd_update knowing about it. This is usually harmless. 
-.It M 
+update without
+.Nm
+knowing about it. This is usually harmless.
+.It M
 Mode change. Only changes to permission or ownership were needed to
-uninstall the file or directory. 
+uninstall the file or directory.
 .It R
 Removed. No previous file or directory existed, so the uninstall process
-removed the file. 
+removed the file.
 .It U
-Updated. During installation, the file or directory replaces an existing 
+Updated. During installation, the file or directory replaces an existing
 object at the same path. During uninstallation, the previous version of
-the file was restored. 
+the file was restored.
 .El
 .Sh SUPPORTED PATHS
 .Bl -tag -width -indent
 .It /path/to/file-or-directory
-You can install archive files or directories by specifying a relative or 
-absolute path. If the path is a directory, all files below it will be 
+You can install archive files or directories by specifying a relative or
+absolute path. If the path is a directory, all files below it will be
 installed as a single root. If the path points to a file, it must be one of
-the suported archive file types as described in the usage statement. 
+the suported archive file types as described in the usage statement.
 .It user@host:/path/to/file-or-directory
-You can install files or directories from another host via rsync/ssh. 
-The files/directories will be downloaded to your machine and then installed 
+You can install files or directories from another host via rsync/ssh.
+The files/directories will be downloaded to your machine and then installed
 like any other root.
 .It http[s]://host/path/to/file
 You can install files from an archive hosted on an HTTP/HTTPS server. The
 archive file will be downloaded using curl to your machine and then
-installed like any other archive file. You can not point pd_update at a
-directory hosted via HTTP or HTTPS, only archive files such as tarballs.  
+installed like any other archive file. You can not point
+.Nm
+at a directory hosted via HTTP or HTTPS, only archive files such as tarballs.
 .El
 .Sh ARCHIVE SPECIFICATIONS
-When running a subcommand which takes an 
+When running a subcommand which takes an
 .Ar archive
 argument, you can use one or more of the following items to specify which
-archive to operate on. You can mix and match any of them as needed. 
-You can use the list subcommand with these specifications to see what will 
+archive to operate on. You can mix and match any of them as needed.
+You can use the list subcommand with these specifications to see what will
 match.
 .Bl -tag -width -indent
 .It Ar serial
@@ -176,62 +184,78 @@ The newest keyword will match the one archive which was most recently
 installed. This should always be the first archive listed.
 .It oldest
 The oldest keyword will match the one archive which was installed the
-longest time ago. This should always be the last archive listed. 
+longest time ago. This should always be the last archive listed.
 .It superseded
 The superseded keyword will match zero or more archives. An archive is
 superseded if every file it contains is contained in an archive that was
 (and still is) installed after it. A file in an archive can also be superseded
 by external changes, such as operating system updates. When uninstalling a
 superseded archive, you should never see any status symbols, since being
-superseded means there is a newer file on disk. 
+superseded means there is a newer file on disk.
 .It all
-The all keyword will match all archives. If you specify extra verbosity 
+The all keyword will match all archives. If you specify extra verbosity
 with -vv, then rollback archives will also be matched by the all keyword. This
-means that 
-.Nm pd_update -vv uninstall all
+means that
+.Dl $ Ic pd_update -vv uninstall all
 will attempt to uninstall rollback archives, which will print a message
 about not being able to uninstall rollback archives. This is normal and
-not a problem. 
+not a problem.
 .El
 .Sh FORCING OPERATIONS
-There are 2 cases where pd_update will require you to pass the force (-f)
+There are 2 cases where
+.Nm
+will require you to pass the force (-f)
 option before proceeding with an operation.
 .Bl -tag -width -indent
 .It Object Type Change
-If you install an archive which contains a file with the same path as a 
-directory on your system, or vice versa, pd_update will give you a error
+If you install an archive which contains a file with the same path as a
+directory on your system, or vice versa,
+.Nm
+will give you a error
 about not doing that unless you really want to force it. If you do force
-the operation, pd_update will delete the existing object and replace it with
+the operation,
+.Nm
+will delete the existing object and replace it with
 the object from the root. This can happen when a directory full of files
 gets packaged up in some opaque file, like xibs/nibs. If you expect this
-"type change", then it is probably safe to force the operation. 
+"type change", then it is probably safe to force the operation.
 .It Uninstall a root from an older base system
 .Nm
 remembers the version (build) of the operating system when a root
-is installed. The reason for this is pd_update saves the old (replaced)
+is installed. The reason for this is
+.Nm
+saves the old (replaced)
 files during the installation procedure. Those backups may have come from
 the older operating system, and thus are not necessarily compatible with
 the current build of the operating system. So if you try to uninstall an
 archive that had been installed on a different version of the operating
-system, pd_update will stop and provide a message asking you to force the
+system,
+.Nm
+will stop and provide a message asking you to force the
 operation if you really want to. If the files you are uninstalling are all
 superseded, then you should not get this error as the backup copies will
-not be used anyway. 
+not be used anyway.
 .El
 .Sh HELPFUL AUTOMATION
 .Nm
 tries to detect common situations and run external tools that you
-would otherwise have to remember to run yourself. The "dry run" (-n) and 
-"disable automation" (-d) options prevent any of the following from 
+would otherwise have to remember to run yourself. The "dry run" (-n)
+and "disable automation" (-d) options prevent any of the following from
 happening.
 .Bl -tag -width -indent
 .It Dyld Cache
-If a root modifies any file, then pd_update will run 
-update_dyld_shared_cache unless the -d option is specified.
+If a root modifies any file, then
+.Nm
+will run
+.Ic update_dyld_shared_cache
+unless the
+.Fl d
+option is specified.
 .It Kernel Extensions
-If a root modifies a file under /System/Library/Extensions, then pd_update
-will update the mtime of /System/Library/Extensions to ensure that the 
-kext cache is updated during the next boot. 
+If a root modifies a file under /System/Library/Extensions, then
+.Nm
+will update the mtime of /System/Library/Extensions to ensure that the
+kext cache is updated during the next boot.
 .El
 .Sh EXAMPLES
 Install files from a tarball
